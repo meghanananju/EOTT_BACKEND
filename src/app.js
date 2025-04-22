@@ -44,7 +44,7 @@ const payloadLimit = 500 * 1024 * 1024;
 app.use(bodyParser.json({ limit: payloadLimit })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: payloadLimit, extended: true }));
 const jwt = require("./middleware/jsonWebToken");
-app.use(jwt.verifyToken);
+// app.use(jwt.verifyToken);
 
 // Create a new router for API routes
 const api = express.Router(); // Define the `api` router
@@ -54,10 +54,12 @@ app.use("", api);
 /***************************LOGIN  & SIGNUP MODULE API*********************/
 const { login } = require("./controllers/login/login");
 const { addUser } = require("./controllers/signUp/addUser");
-
+const { profile } = require("./controllers/user/profile")
 /****************************************************************/
 api.post("/login", login);
-api.post("/addUser",addUser);
+api.post("/addUser", addUser);
+api.post("/profile", profile)
+
 
 // Use /api as a base path for all routes
 app.use("", api);

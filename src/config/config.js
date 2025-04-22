@@ -106,6 +106,12 @@ exports.configurations = {
       Error: "Error has occurred; please try again later.",
     },
   },
+  profile: {
+    noUsername: "Please provide username",
+    userNotFound: "User not found",
+    Error: "Error has occurred; please try again later.",
+
+  },
   logger: {
     //userlogin
     addProxyLogger: "ADD PROXY API HAS BEEN HIT",
