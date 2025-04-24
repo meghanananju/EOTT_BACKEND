@@ -55,10 +55,12 @@ app.use("", api);
 const { login } = require("./controllers/login/login");
 const { addUser } = require("./controllers/signUp/addUser");
 const { profile } = require("./controllers/user/profile")
+const { updatePassword } = require("./controllers/user/updatePassword")
 /****************************************************************/
 api.post("/login", login);
 api.post("/addUser", addUser);
 api.post("/profile", profile)
+api.post("/updatePassword", updatePassword)
 
 
 // Use /api as a base path for all routes

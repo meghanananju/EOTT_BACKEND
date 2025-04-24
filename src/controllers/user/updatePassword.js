@@ -29,14 +29,16 @@
 const { StatusCodes } = require("http-status-codes");
 const { logger } = require("../../logs/logger");
 const asyncWrapper = require("../../middleware/async");
-const { profileService } = require("../../services/profileService");
+const { updatePasswordService } = require("../../services/profileService");
 const { configurations } = require("../../config/config");
 
 // Exported function for handling profile endpoint
-exports.profile = asyncWrapper(async (req, res) => {
-    logger.info(configurations.logger.profileLogger);
+exports.updatePassword = asyncWrapper(async (req, res) => {
+    logger.info(configurations.logger.updatePasswordLogger);
 
-    const { userName } = req.body;
-    const result = await profileService(userName);
+    const { oldPassword,
+        newPassword, userName } = req.body;
+    const result = await updatePasswordService(oldPassword,
+        newPassword, userName);
     res.status(StatusCodes.OK).json(result);
 });
