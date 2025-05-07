@@ -3,7 +3,7 @@ const { configurations } = require("../config/config");
 const sequelize = require("../db/connect");
 const user = require("../models/user/user");
 const { findEmailFromUser } = require("../utilities/logInFunctions");
-const bcrypt = require("bcrypt")
+const { comparePassword } = require("../utilities/password")
 const profileService = async (userName) => {
 
     if (!userName) {
@@ -57,7 +57,7 @@ const updatePasswordService = async (oldPassword,
         })
 
         if (validUser) {
-            const isMatch = await bcrypt.compare(oldPassword, validUser.password)
+            const isMatch = await comparePassword(oldPassword, validUser.password)
 
             if (isMatch) {
                 const updateToNewPassword = await bcrypt.hash(newPassword, 10)
